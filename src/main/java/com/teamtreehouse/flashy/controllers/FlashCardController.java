@@ -2,6 +2,7 @@ package com.teamtreehouse.flashy.controllers;
 
 import com.teamtreehouse.flashy.domain.FlashCard;
 import com.teamtreehouse.flashy.services.FlashCardService;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -38,11 +39,12 @@ public class FlashCardController {
   }
 
   @RequestMapping("/flashcard/{id}")
-  public String showFlashCard(HttpServletRequest req, @PathVariable Long id, Model model) {
+  public String showFlashCard(HttpServletRequest req, @PathVariable Long id, Model model, Principal principal) {
     Map<Long, Long> cardCounts = getCardCounts(req);
     cardCounts.compute(id, (key, val) -> val == null ? 1 : val + 1);
     model.addAttribute("flashCard", flashCardService.getFlashCardById(id));
     model.addAttribute("viewCount", cardCounts.get(id));
+    model.addAttribute("loggedInUsername", principal.getName());
     return "flashcard_show";
   }
 

@@ -14,6 +14,7 @@
     <h1 class="logo"><a href="/">Flashy</a></h1>
 </div>
 <div>
+  <p th:text="|Logged in as ${loggedInUsername}|"></p>
     <form th:action="@{/logout}" method="post">
         <button type="submit">Log out</button>
     </form>
