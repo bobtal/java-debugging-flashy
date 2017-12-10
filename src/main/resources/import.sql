@@ -3,9 +3,11 @@ insert into role (name) values ('ROLE_USER');
 insert into role (name) values ('ROLE_ADMIN');
 
 -- Insert three users, one admin, and two regular users
-insert into user (username, enabled, password) values ('admin', true, 'admin');
-insert into user (username, enabled, password) values ('user', true, 'password');
-insert into user (username, enabled, password) values ('user2', true, 'password');
+-- password for admin is 'admin', password for both user and user2 is 'password'
+-- used this online tool for getting the hash https://www.dailycred.com/article/bcrypt-calculator
+insert into user (username, enabled, password) values ('admin', true, '$2a$10$.sMJyDcj.7C.lKZaNU8Z9e4XVLw.DsWStl3ztNrp4s607PxUlP4nq');
+insert into user (username, enabled, password) values ('user', true, '$2a$10$Z2J2u1JsKTIHkin2wJs5y.gfcrL2FxeDKlWNoniUaHAfGhu3w900W');
+insert into user (username, enabled, password) values ('user2', true, '$2a$10$Z2J2u1JsKTIHkin2wJs5y.gfcrL2FxeDKlWNoniUaHAfGhu3w900W');
 
 -- Assign roles to users, admin gets 1 and 2 (USER and ADMIN), user and user2 get 2 only (USER)
 insert into user_role (user_id, role_id) values (1, 1);
