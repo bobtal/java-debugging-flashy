@@ -13,6 +13,12 @@
 <div class="title">
     <h1 class="logo"><a href="/">Flashy</a></h1>
 </div>
+<div>
+  <p th:text="|Logged in as ${loggedInUsername}|"></p>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Log out</button>
+    </form>
+</div>
 <div class="bounds">
     <a href="#" id="flashCard" class="card-container">
         <div class="card-flipper">
@@ -25,6 +31,14 @@
             </div>
         </div>
     </a>
+</div>
+<div><p>Did you get it right?</p>
+  <form th:action="@{/flashcard/next}" method="post">
+    <button type="submit">Yes</button>
+  </form>
+  <form th:action="@{|/flashcard/no/${flashCard.id}|}" method="post">
+    <button type="submit">No</button>
+  </form>
 </div>
 <a href="/flashcard/next" class="card card-flash card-next">Next</a>
 
