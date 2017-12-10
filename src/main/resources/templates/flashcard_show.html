@@ -32,6 +32,14 @@
         </div>
     </a>
 </div>
+<div><p>Did you get it right?</p>
+  <form th:action="@{/flashcard/next}" method="post">
+    <button type="submit">Yes</button>
+  </form>
+  <form th:action="@{|/flashcard/no/${flashCard.id}|}" method="post">
+    <button type="submit">No</button>
+  </form>
+</div>
 <a href="/flashcard/next" class="card card-flash card-next">Next</a>
 
 <script>
